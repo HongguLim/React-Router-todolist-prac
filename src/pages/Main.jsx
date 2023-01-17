@@ -1,13 +1,21 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useQuery } from "react-query";
 import Input from "../components/Input";
 import Todolist from "../components/Todolist";
 
 function Main() {
+  const { data } = useQuery("todos", () =>
+    axios.get("http://localhost:4000/todos")
+  );
+
+  console.log("data", data?.data);
+
   return (
     <>
       <Input />
-      <Todolist isActive={true} />
-      <Todolist isActive={false} />
+      <Todolist isActive={true} todos={data?.data} />
+      <Todolist isActive={false} todos={data?.data} />
     </>
   );
 }
