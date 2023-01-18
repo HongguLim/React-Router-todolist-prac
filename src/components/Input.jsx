@@ -19,7 +19,6 @@ export default function Input() {
   });
 
   const addTodoButtonHander = async function () {
-    console.log("hello");
     const newTodo = {
       title,
       contents,

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
 
 export default function Todolist({ isActive, todos }) {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const switchButtonHandler = async (item) => {
     await axios.patch(`http://localhost:4000/todos/${item.id}`, {
@@ -32,7 +33,7 @@ export default function Todolist({ isActive, todos }) {
               <p>제목:{item.title}</p>
               <p>내용:{item.contents}</p>
               <p>id:{item.id}</p>
-              <button onClick={() => Navigate(`/${item.id}`)}>
+              <button onClick={() => navigate(`/${item.id}`)}>
                 [상세보기]
               </button>
               <button onClick={() => switchButtonHandler(item)}>
