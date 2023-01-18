@@ -9,8 +9,6 @@ function Main() {
     axios.get("http://localhost:4000/todos")
   );
 
-  console.log("data", data?.data);
-
   return (
     <>
       <Input />
